@@ -20,14 +20,14 @@ class _FavourScreenState extends State<FavourScreen> {
           name: 'Muhabbat',
           author: 'Rayhon',
           path: 'assets/musics/Love_On_Me.mp3',
-          imgUrl: 'assets/images/recommend_music2.jpg'),
+          imgUrl: 'assets/images/recommend_music2.jpg',isLike: true),
     );
     Storage().storeMusic(
       MusicModel(
           name: 'Sevgi',
           author: 'Rayhon',
           path: 'assets/musics/Love_On_Me.mp3',
-          imgUrl: 'assets/images/recommend_music2.jpg'),
+          imgUrl: 'assets/images/recommend_music2.jpg',isLike: true),
     );
   }
 
@@ -38,8 +38,8 @@ class _FavourScreenState extends State<FavourScreen> {
       itemBuilder: (BuildContext context, int index) {
         MusicModel musicModel = boxMusics.getAt(index);
         return ListTile(
-          title: Text(musicModel.author),
-          subtitle: Text(musicModel.name),
+          title: Text(musicModel.author!),
+          subtitle: Text(musicModel.name!),
           leading: IconButton(
             onPressed: () {
               setState(() {

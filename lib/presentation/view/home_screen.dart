@@ -19,9 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    print('Home Screen working');
     return Scaffold(
       extendBody: true,
-
       backgroundColor: AllColors.backColor,
       body: SingleChildScrollView(
         child: Column(
@@ -137,7 +137,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   return GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>  AudioScreen(index: 1,list: dayMusic,)));
+                          builder: (context) => AudioScreen(
+                                index: index,
+                                list: dayMusic,
+                              )));
                     },
                     child: RecommendWidget(
                       index: index,
@@ -153,10 +156,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: dayMusic.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AudioScreen(index: index,list: dayMusic,)));
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => AudioScreen(
+                                  index: index,
+                                  list: dayMusic,
+                                )));
                       },
-                      child: DayMusicWidget(index: index,));
+                      child: DayMusicWidget(
+                        index: index,
+                      ));
                 })
           ],
         ),
@@ -164,5 +173,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-

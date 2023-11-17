@@ -8,7 +8,7 @@ class MusicImgWidget extends StatelessWidget {
     required this.index,
   });
 
-  final int? index;
+  final int index;
   final List<MusicModel> musicList;
 
   @override
@@ -25,7 +25,7 @@ class MusicImgWidget extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18),
               image: DecorationImage(
-                image: AssetImage(musicList[index ?? 0].imgUrl),
+                image: AssetImage(musicList[index].imgUrl!),
                 fit: BoxFit.cover,
               ),
               boxShadow: const [
@@ -39,7 +39,7 @@ class MusicImgWidget extends StatelessWidget {
         ),
         const SizedBox(height: 38,),
         Text(
-          musicList[index ?? 0].author,
+          musicList[index].author!,
           style:const  TextStyle(
               color: Colors.white,
               fontFamily: 'textFont',
@@ -48,7 +48,7 @@ class MusicImgWidget extends StatelessWidget {
         ),
         const SizedBox(height: 7,),
         Text(
-          musicList[index ?? 0].name,
+          musicList[index ?? 0].name!,
           style:const  TextStyle(
               color: Colors.white70,
               fontFamily: 'textFont',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/presentation/view/audio_screen.dart';
+import 'package:music_app/presentation/widgets/play_list_screen.dart';
 import 'package:music_app/utlis/all_colors/all_color_screen.dart';
 import 'package:music_app/utlis/resources/top_music_list/music_list.dart';
 
@@ -14,7 +15,9 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   late TextEditingController controller = TextEditingController();
+void takeDuration(){
 
+}
   @override
   void initState() {
     super.initState();
@@ -27,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
     setState(() {
       list = topSonger
           .where((element) =>
-          element.first.author.toLowerCase().contains(value.toLowerCase()))
+          element.first.author!.toLowerCase().contains(value.toLowerCase()))
           .toList();
     });
   }
@@ -116,23 +119,23 @@ class _SearchScreenState extends State<SearchScreen> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              AudioScreen(index: 0, list: topSonger[index])));
+
+
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PlayListScreen(list: topSonger[index],)));
                     },
                     child: Column(
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(18),
                           child: Image.asset(
-                            list[index][0].imgUrl,
+                            list[index][0].imgUrl!,
                             fit: BoxFit.cover,
                             height: 100,
                             width: 100,
                           ),
                         ),
                         Text(
-                          list[index][0].author,
+                          list[index][0].author!,
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,

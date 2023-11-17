@@ -32,7 +32,7 @@ class DayMusicWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                dayMusic[index].name,
+                dayMusic[index].name!,
                 style: const TextStyle(
                     color: Colors.white,
                     fontFamily: 'textFont',
@@ -42,7 +42,7 @@ class DayMusicWidget extends StatelessWidget {
                 height: 3,
               ),
               Text(
-                dayMusic[index].author,
+                dayMusic[index].author!,
                 style: const TextStyle(
                     color: Colors.white,
                     fontFamily: 'textFont',
