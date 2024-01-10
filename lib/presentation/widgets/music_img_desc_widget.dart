@@ -9,7 +9,7 @@ class MusicImgWidget extends StatelessWidget {
   });
 
   final int index;
-  final List<MusicModel> musicList;
+  final List musicList;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class MusicImgWidget extends StatelessWidget {
               ]
           ),
         ),
-        const SizedBox(height: 38,),
+        const SizedBox(height: 28,),
         Text(
           musicList[index].author!,
           style:const  TextStyle(

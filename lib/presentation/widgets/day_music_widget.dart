@@ -19,7 +19,7 @@ class DayMusicWidget extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(18),
             child: Image.asset(
-              listImage[index],
+              dayMusic[index].imgUrl,
               fit: BoxFit.cover,
               height: 100,
               width: 100,

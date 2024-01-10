@@ -3,7 +3,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:music_app/domain/models/music_model.dart';
 
 class FavourController extends GetxController {
-  var listMusicModel = <MusicModel>[].obs;
+  var listMusicModel =[].obs;
   var indexx = AudioPlayer().currentIndex.obs;
   var isShuffle = false.obs;
 

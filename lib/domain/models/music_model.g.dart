@@ -21,8 +21,7 @@ class MusicModelAdapter extends TypeAdapter<MusicModel> {
       author: fields[1] as String,
       path: fields[2] as String,
       imgUrl: fields[3] as String,
-      isLike: fields[4] ?? false,
-
+      isLike: fields[4] as bool,
     );
   }
 

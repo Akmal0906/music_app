@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/presentation/view/audio_screen.dart';
-import 'package:music_app/presentation/widgets/play_list_screen.dart';
+import 'package:music_app/presentation/view/play_list_screen.dart';
 import 'package:music_app/utlis/all_colors/all_color_screen.dart';
 import 'package:music_app/utlis/resources/top_music_list/music_list.dart';
-
+import 'package:music_app/utlis/toast_message/toast_class.dart';
+import 'package:music_app/utlis/toast_message/toast_message_screen.dart';
 import '../../domain/models/music_model.dart';
+import '../../utlis/resources/recommend_list_image.dart';
+import '../widgets/search_screen_item_widget.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -15,9 +17,7 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   late TextEditingController controller = TextEditingController();
-void takeDuration(){
 
-}
   @override
   void initState() {
     super.initState();
@@ -30,7 +30,7 @@ void takeDuration(){
     setState(() {
       list = topSonger
           .where((element) =>
-          element.first.author!.toLowerCase().contains(value.toLowerCase()))
+              element.first.author.toLowerCase().contains(value.toLowerCase()))
           .toList();
     });
   }
@@ -43,9 +43,6 @@ void takeDuration(){
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
     return Container(
       color: AllColors.backColor,
       child: Padding(
@@ -104,59 +101,44 @@ void takeDuration(){
             height: 18,
           ),
           Expanded(
-            child: list.isEmpty ? const Center(
-              child: Text('Not result found', style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'textFont',
-                  letterSpacing: 1),),
-            ): GridView.builder(
-                physics: const AlwaysScrollableScrollPhysics(),
-                itemCount: list.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, crossAxisSpacing: 5),
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-
-
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PlayListScreen(list: topSonger[index],)));
-                    },
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(18),
-                          child: Image.asset(
-                            list[index][0].imgUrl!,
-                            fit: BoxFit.cover,
-                            height: 100,
-                            width: 100,
-                          ),
-                        ),
-                        Text(
-                          list[index][0].author!,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'textFont'),
-                        ),
-                        Text(
-                          '${list[index].length} music',
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'textFont',
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600),
-                        )
-                      ],
+            child: list.isEmpty
+                ? const Center(
+                    child: Text(
+                      'Not result found',
+                      style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'textFont',
+                          letterSpacing: 1),
                     ),
-                  );
-                }),
+                  )
+                : GridView.builder(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    itemCount: list.length,
+                    gridDelegate:
+                         const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2, crossAxisSpacing: 4),
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          if(index<5){
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => PlayListScreen(
+                                  list: topSonger[index],
+                                )));
+                          }else{
+                            toastMessage(ToastClass.enter);
+                          }
+
+                        },
+                        child: SearchScreenWidget(list: list, index: index,),
+                      );
+                    }),
           ),
         ]),
       ),
     );
   }
 }
+

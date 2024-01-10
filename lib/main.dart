@@ -9,6 +9,7 @@ Future main() async{
   await Hive.initFlutter();
   Hive.registerAdapter(MusicModelAdapter());
    boxMusics=await Hive.openBox<MusicModel>('favour_musics');
+  boxMusicsList=await Hive.openBox<List>('all_musics');
 
   runApp(const MyApp());
 }

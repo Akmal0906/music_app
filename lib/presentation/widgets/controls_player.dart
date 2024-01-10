@@ -9,7 +9,7 @@ import '../../domain/models/music_model.dart';
 class Controls extends StatelessWidget {
   final AudioPlayer audioPlayer;
 final FavourController controller;
-final List<MusicModel> list;
+final List list;
   const Controls({super.key, required this.audioPlayer,required this.controller,required this.list});
 
 
@@ -25,7 +25,6 @@ final List<MusicModel> list;
              if(controller.isShuffle.value){
                var rng =  Random();
                var a=rng.nextInt(list.length);
-               print('RANDOM NUMBER = ${a}');
                controller.updateIndexx(rng.nextInt(list.length));
 
              }else
@@ -36,7 +35,8 @@ final List<MusicModel> list;
                 controller.updateIndexx(audioPlayer.currentIndex!-1);
 
               }
-              print('Controller current index ${audioPlayer.currentIndex}');
+              audioPlayer.play();
+
             },
             icon: const Icon(
               Icons.skip_previous,
@@ -95,6 +95,8 @@ final List<MusicModel> list;
 
 
               }
+              audioPlayer.play();
+
 
 
             },
